@@ -36,7 +36,7 @@
 |---|---|---|---|
 | `dailytally2` | `fellowships` | 済 | id (1〜9) → master id (15〜28) リマップ + `enabled` 列で集計対象トグル |
 | `bulkpurchase` | `fellowships` (旧 `organizations`) | 済 | id 統合 + `enabled` 列 + `organizations` → `fellowships` rename 完了 |
-| `liberation` | `evangelism_meetings` | TODO | `color_code` / `region_id` / `display_order` はアプリ固有なので `fellowship_appearance` 等の別テーブルに分離 |
+| `liberation` | `fellowships` (旧 `evangelism_meetings`) | 済 | id 統合 + `enabled` 列。`color_code` は master に集約、`region_id` / `display_order` は liberation 側に保持 |
 | `dedications` | `congregations` | TODO | 同期実装でテーブル名も `fellowships` に揃える |
 
 ---
