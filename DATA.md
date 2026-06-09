@@ -37,7 +37,7 @@
 | `dailytally2` | `fellowships` | 済 | id (1〜9) → master id (15〜28) リマップ + `enabled` 列で集計対象トグル |
 | `bulkpurchase` | `fellowships` (旧 `organizations`) | 済 | id 統合 + `enabled` 列 + `organizations` → `fellowships` rename 完了 |
 | `liberation` | `fellowships` (旧 `evangelism_meetings`) | 済 | id 統合 + `enabled` 列。`color_code` は master に集約、`region_id` / `display_order` は liberation 側に保持 |
-| `dedications` | `congregations` | TODO | 同期実装でテーブル名も `fellowships` に揃える |
+| `dedications` | `fellowships` (旧 `congregations`) | 済 | id 統合 (89 件すべて master と一致) + `enabled` 列。検索 API は JSON のまま、管理 UI は HTML として `/fellowships` に追加 |
 
 ---
 
