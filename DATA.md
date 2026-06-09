@@ -34,10 +34,10 @@
 
 | システム | テーブル | 同期実装 | 備考 |
 |---|---|---|---|
-| `dailytally2` | `fellowships` | TODO | 既存 id (1〜9) を master の id (15〜28) にリマップする一回限り migration が必要 |
-| `bulkpurchase` | `organizations` | TODO | テーブル名・スキーマを `fellowships` に寄せるか別途検討 |
+| `dailytally2` | `fellowships` | 済 | id (1〜9) → master id (15〜28) リマップ + `enabled` 列で集計対象トグル |
+| `bulkpurchase` | `fellowships` (旧 `organizations`) | 済 | id 統合 + `enabled` 列 + `organizations` → `fellowships` rename 完了 |
 | `liberation` | `evangelism_meetings` | TODO | `color_code` / `region_id` / `display_order` はアプリ固有なので `fellowship_appearance` 等の別テーブルに分離 |
-| `dedications` | `congregations` | TODO | 同期実装でテーブル名も `fellowships` に揃えるか検討 |
+| `dedications` | `congregations` | TODO | 同期実装でテーブル名も `fellowships` に揃える |
 
 ---
 
