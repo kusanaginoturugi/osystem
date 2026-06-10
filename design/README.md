@@ -54,16 +54,19 @@ osystem 配下のアプリ群で「同じ見た目に揃えられるところは
 
 ## 各アプリの現状
 
-| アプリ | application.css | 採用状況 |
-|---|---|---|
-| `dedications` | 1203 行 (全部) | ベースの元。今は何もしない (将来的にベース層を切り出し直すかは別判断)。 |
-| `liberation` | 694 行 | 雰囲気は近いが差分は大きめ。差分洗い出し未着手。 |
-| `bulkpurchase` | 10 行 | ほぼ素。ベースをそのまま当てたほうが早い可能性が高い。 |
-| `itementry` | 未調査 | osystem-masters 連携も未対応なので後回し。 |
-| `dailytally2` | CF Workers (別構成) | Rails 系と CSS の流し込み方が違うため、適用するなら別途検討。 |
-| `osystem-masters` | JSX 内 inline | 適用するなら CSS クラスに寄せるところから。 |
+| アプリ | スタイル基盤 | 寄せ方 | 状況 |
+|---|---|---|---|
+| `dedications` | 手書き `application.css` (1203 行) | ベースの抽出元 | 触らない。汎用層を再切り出しする場合は別判断。 |
+| `liberation` | 手書き `application.css` (694 行) | `:root` トークン + ハードコード rgba 置換 | 寄せ済み (2026-06-10)。命名は BEM 風のまま、view は touch していない。 |
+| `bulkpurchase` | Tailwind v4 (`tailwindcss-rails`) + Propshaft | `@theme` で stone / amber / emerald / rose / red / blue / gray を上書き | 寄せ済み (2026-06-10)。`current_orders/_form` のみ `.btn`/`.btn-primary`/`.btn-secondary` に @apply 集約済み、他画面の utility 連打は順次。 |
+| `itementry` | Bootstrap 5 CDN + 手書き `application.css` | `--bs-*` 変数と `.btn-*` / `.alert-*` / `.table-*` の component 独自変数を `:root` で上書き | 寄せ済み (2026-06-10)。view の Bootstrap クラス名は touch していない。 |
+| `dailytally2` | CF Workers + 素 HTML + `public/style.css` (752 行) | `:root` トークン + zinc / red ハードコード置換 | 寄せ済み (2026-06-10)。警告の黄系 (`#fffbe6` 等) は意味があるので維持。 |
+| `osystem-masters` | Hono JSX + Layout 内 `<style>{STYLE}</style>` | `STYLE` テンプレ文字列の色値を直接置換 | 寄せ済み (2026-06-10)。inline `style=` は元々無し。本番は未デプロイ。 |
+| `register` | スタンドアロン HTML | — | 触らない (osystem#1 のスコープ外、ユーザー指示)。 |
 
-「採用」は順次。一気にやらない。
+`portal/` は UI なし、`.old/Dailytally/` はアーカイブ。
+
+「寄せ済み」は「`base.css` の色味と一致する見た目に近づけた」という意味で、構造 (HTML/クラス名) を base.css 命名に揃えたわけではない。完全統一は別タスク。
 
 ## 試し方
 
