@@ -7,7 +7,7 @@
 | ディレクトリ | 用途 | スタック | 本番 URL | GitHub repo | 最終コミット |
 |---|---|---|---|---|---|
 | [`portal/`](./portal) | 全システムへの入口 (ポータル) | 静的 HTML/JS | — | `WisdomKing` | 2026-05-11 |
-| [`osystem-masters/`](./osystem-masters) | 共通マスタ (伝道会 / 護摩供 / 商品) の正本 + 管理 UI + 読み取り API | CF Workers + D1 + Hono / authentik OIDC | (未デプロイ) | `osystem-masters` | 2026-06-09 |
+| [`osystem-masters/`](./osystem-masters) | 共通マスタ (伝道会 / 護摩供 / 商品) の正本 + 管理 UI + 読み取り API | CF Workers + D1 + Hono / authentik OIDC | https://osystem-masters.kusanaginoturugi.workers.dev/ | `osystem-masters` | 2026-06-10 |
 | [`dailytally2/`](./dailytally2) | 八大明王護摩供 毎日集計 (現行) | CF Workers + D1 / authentik OIDC | https://dailytally.kusanaginoturugi.workers.dev/ | `dailytally2` | 2026-06-05 |
 | [`dedications/`](./dedications) | 八大明王護摩供 代理奉納 (FAX 申込書入力) | Rails 8.1 / Ruby 3.4.8 | https://dedications.showway.biz/ | `dedications` | 2026-05-19 |
 | [`liberation/`](./liberation) | 超抜式 挙行登録 (現在は単一聖院モード) | Rails 8.1 / Ruby 3.4.8 | https://liberation.showway.biz/ | `liberation` | 2026-05-08 |
