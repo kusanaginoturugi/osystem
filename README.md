@@ -19,6 +19,12 @@
 
 各システムが保持しているマスタデータの所在と源流は [`DATA.md`](./DATA.md) を参照。新システムを作る前に必ず読む。
 
+## 共通リソース
+
+| ディレクトリ | 用途 | 配布方式 |
+|---|---|---|
+| [`design/`](./design) | 全アプリ共通の見た目を揃えるための CSS ベース (`base.css` + 確認用 `sample.html`)。`dedications` のスタイルから汎用層を抽出したもの。 | 当面コピー。詳細は [`design/README.md`](./design/README.md) と [`osystem#1`](https://github.com/kusanaginoturugi/osystem/issues/1)。 |
+
 ## 命名規則
 
 - ディレクトリ名は lowercase。

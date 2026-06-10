@@ -1,0 +1,550 @@
+/*
+ * osystem common design base
+ *
+ * source of truth: osystem/design/base.css
+ * origin: dedications/app/assets/stylesheets/application.css の汎用層を抽出したもの。
+ *
+ * このファイルは「ベース」であって、各アプリに自動配布されない。
+ * 採用したいアプリが自分の application.css に差し替え or マージする。
+ * 詳細は osystem/design/README.md を参照。
+ */
+
+:root {
+  --bg: #edf2fb;
+  --panel: #fffdfd;
+  --ink: #495567;
+  --muted: #7d88a0;
+  --line: #d7dfef;
+  --accent: #b7a6d9;
+  --accent-strong: #907fc0;
+  --accent-soft: #f3e6f2;
+  --success: #7f97be;
+  --error: #b46a6a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top right, rgba(183, 166, 217, 0.18), transparent 24rem),
+    linear-gradient(180deg, #faf7f1 0%, var(--bg) 100%);
+  font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+/* layout shell ------------------------------------------------------------ */
+
+.app-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem 1.5rem;
+}
+
+.app-header,
+.page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.app-header h1,
+.page-head h2,
+.card h2 {
+  margin: 0;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+
+.eyebrow,
+.section-lead {
+  margin: 0.1rem 0 0;
+  color: var(--muted);
+}
+
+.page-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* header menu ------------------------------------------------------------- */
+
+.header-nav {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.menu-tree {
+  position: relative;
+}
+
+.menu-tree [data-menu-toggle] {
+  user-select: none;
+}
+
+.menu-tree-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5rem);
+  min-width: 260px;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+  box-shadow: 0 12px 30px rgba(45, 36, 29, 0.12);
+  display: grid;
+  gap: 0.9rem;
+  z-index: 10;
+}
+
+.menu-tree-panel[hidden] {
+  display: none;
+}
+
+.menu-tree-panel h3 {
+  margin: 0.5rem 0 0.5rem;
+  color: var(--accent);
+  font-size: 1.05rem;
+  font-weight: 800;
+  border-bottom: 2px solid var(--accent-soft);
+  padding-bottom: 0.25rem;
+}
+
+.menu-tree-panel section {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.menu-sub-items {
+  display: grid;
+  gap: 0.25rem;
+  padding-left: 0.75rem;
+}
+
+.menu-tree-panel a {
+  padding: 0.15rem 0;
+}
+
+/* card -------------------------------------------------------------------- */
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 0.6rem;
+  box-shadow: 0 12px 30px rgba(45, 36, 29, 0.06);
+}
+
+.narrow-card {
+  max-width: 440px;
+  margin: 4rem auto;
+}
+
+/* form -------------------------------------------------------------------- */
+
+.stack-form {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.form-top-grid,
+.two-column-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.form-top-grid {
+  grid-template-columns: minmax(0, 2fr) minmax(220px, 1fr);
+  align-items: end;
+}
+
+.field {
+  display: grid;
+  gap: 0.08rem;
+  min-width: 0;
+  width: 100%;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.35rem 0.55rem;
+  background: #fff;
+  line-height: 1.2;
+  font-size: 0.95rem;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 2px solid rgba(144, 127, 192, 0.22);
+  border-color: var(--accent);
+}
+
+.field-label {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.checkbox-field {
+  align-content: end;
+}
+
+.checkbox-field label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.toggle-field {
+  align-content: stretch;
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.toggle-label input {
+  width: auto;
+  margin: 0;
+}
+
+.toggle-label span {
+  line-height: 1;
+}
+
+.derived-value {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(183, 166, 217, 0.07);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.25rem;
+}
+
+.form-two-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .form-two-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* buttons / links --------------------------------------------------------- */
+
+.primary-link,
+.secondary-link,
+.primary-button,
+.danger-button,
+.ghost-button,
+.search-result {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.primary-link,
+.primary-button {
+  background: var(--accent);
+  color: #fff;
+}
+
+.primary-link:hover,
+.primary-button:hover {
+  background: var(--accent-strong);
+}
+
+.danger-button {
+  background: var(--error);
+  color: #fff;
+}
+
+.danger-button:hover {
+  background: #925757;
+}
+
+.secondary-link,
+.ghost-button,
+.search-result {
+  background: transparent;
+  border-color: var(--line);
+}
+
+.ghost-button {
+  color: var(--muted);
+}
+
+/* flash / error ----------------------------------------------------------- */
+
+.flash {
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.flash.notice {
+  background: rgba(127, 151, 190, 0.14);
+  color: var(--success);
+}
+
+.flash.alert,
+.error-box {
+  background: rgba(180, 106, 106, 0.14);
+  color: var(--error);
+}
+
+.error-box {
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+}
+
+/* table ------------------------------------------------------------------- */
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  padding: 1rem 1.2rem;
+  vertical-align: middle;
+}
+
+thead th,
+tfoot th,
+tfoot td {
+  background: rgba(183, 166, 217, 0.07);
+}
+
+.sort-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-weight: 700;
+  position: relative;
+  padding-right: 1.2rem;
+}
+
+.sort-link::after {
+  content: " ▼";
+  position: absolute;
+  right: 0;
+  opacity: 1;
+  font-size: 0.8rem;
+}
+
+.sort-link.active::after {
+  display: none;
+}
+
+.clickable-row {
+  cursor: pointer;
+}
+
+.clickable-row:hover td,
+.clickable-row:focus-visible td {
+  background: rgba(183, 166, 217, 0.08);
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* masters sync panel ------------------------------------------------------ */
+/* 3 アプリ共通の「マスタ同期 + enabled トグル」管理 UI 用。 */
+
+.masters-sync > summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.masters-sync[open] > summary {
+  margin-bottom: 0.75rem;
+}
+
+.masters-sync-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 0.75rem 0;
+}
+
+.masters-sync-form {
+  margin-top: 1rem;
+}
+
+.fellowship-enabled-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+}
+
+.fellowship-enabled-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+}
+
+.code-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* mobile ------------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+  .app-header,
+  .page-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-nav,
+  .page-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .menu-tree-panel {
+    position: static;
+    min-width: 0;
+    margin-top: 0.5rem;
+  }
+
+  .app-shell {
+    padding: 1rem 0.75rem 3rem;
+  }
+
+  .card {
+    padding: 1rem;
+    border-radius: 16px;
+  }
+
+  .field input,
+  .field select,
+  .field textarea,
+  .primary-link,
+  .secondary-link,
+  .primary-button,
+  .ghost-button,
+  .search-result {
+    min-height: 48px;
+  }
+
+  .stack-on-mobile thead {
+    display: none;
+  }
+
+  .stack-on-mobile tbody {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .stack-on-mobile tr {
+    display: grid;
+    gap: 0.5rem;
+    padding: 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.75);
+  }
+
+  .stack-on-mobile td {
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    gap: 0.75rem;
+    padding: 0;
+    border: 0;
+    align-items: center;
+  }
+
+  .stack-on-mobile td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .stack-on-mobile tfoot tr {
+    display: table-row;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .stack-on-mobile tfoot th,
+  .stack-on-mobile tfoot td {
+    display: table-cell;
+    padding: 0.8rem 0.6rem;
+    border-bottom: 1px solid var(--line);
+  }
+}
