@@ -108,6 +108,7 @@
 |---|---|
 | `osystem-masters` | authentik OIDC (admin グループのみ編集可) |
 | `dailytally2` | authentik OIDC / SSO ヘッダ |
+| `nimotsu-bango` | authentik OIDC |
 | `dedications` | Rails 個別 users |
 | `liberation` | Rails 個別 users |
 | `itementry` | (要確認) |
@@ -117,7 +118,28 @@
 
 ---
 
-## 6. アーキテクチャ
+## 6. 荷物番号台帳
+
+| システム | テーブル / ファイル | 用途 | カラム |
+|---|---|---|---|
+| `nimotsu-bango` | `baggage_records` / 初期投入元 `data/records.json` | 荷物番号の検索・追加 | `baggage_number`, `fellowship_id`, `person_name`, `issued_at`, `issued_on_text`, `deceased`, `transferred`, `active` |
+| `nimotsu-bango` | `fellowships` | 伝道会参照 | `code`, `short_name`, `name`, `sort_order` |
+
+**源流（現状）**: 元 Excel。`tools/convert_excel.py` で `data/records.json` に変換し、`scripts/records-to-sql.mjs` で D1 投入 SQL を生成する。
+
+**方針**:
+- 閲覧は authentik ログイン済みユーザー全員に許可。
+- 一般ユーザーの追加は自身の伝道会に固定。
+- 管理者は全伝道会の追加・更新・無効化が可能。
+- 削除は物理削除ではなく `active = 0`。
+- 伝道会は将来的に `osystem-masters.fellowships` から同期する。
+
+**要確認**:
+- 現在の台帳にある `茨城` は `osystem-masters.fellowships` に未登録。正式コードを確認して共通マスタへ追加するか、既存伝道会への修正が必要。
+
+---
+
+## 7. アーキテクチャ
 
 - `osystem-masters` は読み取り API (`GET /api/fellowships` 他) と管理 UI を持つ。
 - 消費アプリは pull 型で同期する。管理画面に「マスタ同期」ボタンを置き、`INSERT OR REPLACE` で自分の DB に取り込む。

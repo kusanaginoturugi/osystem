@@ -14,6 +14,7 @@
 | [`itementry/`](./itementry) | 道具販売登録 (レシート / 帳票 / 商品マスタ) | Rails 8.1 / Ruby 3.4.7 | https://itementry.showway.biz/ | `itementry` | 2026-04-20 |
 | [`bulkpurchase/`](./bulkpurchase) | 道具一括注文 (伝道会の月次注文集約) | Rails 8.1 / Ruby 3.4.8 | https://bulkpurchase.showway.biz/ | `bulkpurchase` | 2026-04-30 |
 | [`register/`](./register) | テンキーレジ (Web 版 / Python CLI 版) | 静的 HTML / Python 3 | https://register-xju.pages.dev/ | `register` | 2026-05-17 |
+| [`nimotsu-bango/`](./nimotsu-bango) | 荷物番号検索・追加 | CF Workers + D1 / authentik OIDC | — | `nimotsu-bango` | 2026-06-20 |
 
 `portal/` のカード定義 (`portal/js/app.js`) と上の表は対応している。新システム追加時は両方更新する。
 
@@ -44,4 +45,5 @@
 ## 関連する外部システム
 
 - 認証: `dailytally2` は authentik (OIDC) または SSO ヘッダで権限制御。
+- 認証: `nimotsu-bango` は authentik (OIDC) でログイン必須。一般ユーザーは全件閲覧・自伝道会のみ追加、管理者は追加・更新。
 - 連携: `dailytally2` は tendo.net への送信、Resend でのメール通知あり。
