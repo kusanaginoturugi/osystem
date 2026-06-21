@@ -47,3 +47,4 @@
 - 認証: `dailytally2` は authentik (OIDC) または SSO ヘッダで権限制御。
 - 認証: `nimotsu-bango` は authentik (OIDC) でログイン必須。一般ユーザーは全件閲覧・自伝道会のみ追加、管理者は追加・更新。
 - 連携: `dailytally2` は tendo.net への送信、Resend でのメール通知あり。
+# dedications-worker
