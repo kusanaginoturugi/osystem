@@ -1,0 +1,174 @@
+/*
+ * osystem app-specific layout
+ *
+ * 各アプリで共通の「殻」レイアウトと、osystem 固有 UI:
+ *   - app-shell, page-head, eyebrow
+ *   - header-nav, menu-tree (グローバルメニュー)
+ *   - masters-sync, fellowship-enabled-list (マスタ連携 UI)
+ *
+ * tokens.css と primitives.css に依存する。
+ */
+
+/* layout shell ------------------------------------------------------------ */
+
+.app-shell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem 1.5rem;
+}
+
+.app-header,
+.page-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.app-header h1,
+.page-head h2 {
+  margin: 0;
+  font-family: var(--font-serif);
+}
+
+.eyebrow,
+.section-lead {
+  margin: 0.1rem 0 0;
+  color: var(--color-on-surface-muted);
+}
+
+.page-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* header menu ------------------------------------------------------------- */
+
+.header-nav {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.menu-tree {
+  position: relative;
+}
+
+.menu-tree [data-menu-toggle] {
+  user-select: none;
+}
+
+.menu-tree-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5rem);
+  min-width: 260px;
+  padding: 1rem;
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-xl);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-pop);
+  display: grid;
+  gap: 0.9rem;
+  z-index: 10;
+}
+
+.menu-tree-panel[hidden] {
+  display: none;
+}
+
+.menu-tree-panel h3 {
+  margin: 0.5rem 0 0.5rem;
+  color: var(--color-primary);
+  font-size: 1.05rem;
+  font-weight: 800;
+  border-bottom: 2px solid var(--color-primary-soft);
+  padding-bottom: 0.25rem;
+}
+
+.menu-tree-panel section {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.menu-sub-items {
+  display: grid;
+  gap: 0.25rem;
+  padding-left: 0.75rem;
+}
+
+.menu-tree-panel a {
+  padding: 0.15rem 0;
+}
+
+/* masters sync panel ------------------------------------------------------ */
+/* osystem 内 3 アプリ共通の「マスタ同期 + enabled トグル」管理 UI 用。 */
+
+.masters-sync > summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.masters-sync[open] > summary {
+  margin-bottom: 0.75rem;
+}
+
+.masters-sync-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 0.75rem 0;
+}
+
+.masters-sync-form {
+  margin-top: 1rem;
+}
+
+.fellowship-enabled-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+}
+
+.fellowship-enabled-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--color-outline);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+}
+
+/* mobile ------------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+  .app-header,
+  .page-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .header-nav,
+  .page-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .menu-tree-panel {
+    position: static;
+    min-width: 0;
+    margin-top: 0.5rem;
+  }
+
+  .app-shell {
+    padding: 1rem 0.75rem 3rem;
+  }
+}

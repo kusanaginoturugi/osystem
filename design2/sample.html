@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>osystem design2 — tokens + primitives + app サンプル</title>
+    <link rel="stylesheet" href="./tokens.css">
+    <link rel="stylesheet" href="./primitives.css">
+    <link rel="stylesheet" href="./app.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">第○期 八大明王護摩供</p>
+          <h1>サンプルアプリ</h1>
+        </div>
+        <nav class="header-nav">
+          <div class="menu-tree" data-menu-tree>
+            <button type="button" class="secondary-link" aria-expanded="false">メニュー</button>
+            <div class="menu-tree-panel">
+              <section>
+                <h3>申込</h3>
+                <a href="#">入力</a>
+                <a href="#">一覧</a>
+              </section>
+              <section>
+                <h3>管理</h3>
+                <a href="#">ユーザー一覧</a>
+                <a href="#">伝道会管理</a>
+              </section>
+            </div>
+          </div>
+          <button class="ghost-button" type="button">サインアウト</button>
+        </nav>
+      </header>
+
+      <p class="flash notice">保存しました。</p>
+      <p class="flash alert">入力に誤りがあります。</p>
+
+      <div class="page-head">
+        <div>
+          <h2>伝道会管理</h2>
+          <p class="section-lead">注文書で選択できる伝道会を絞り込みます。</p>
+        </div>
+        <div class="page-actions">
+          <a href="#" class="primary-link">新規作成</a>
+          <a href="#" class="secondary-link">CSV 出力</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>現在の対象 (enabled)</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th><a href="#" class="sort-link active">code</a></th>
+                <th>old_code</th>
+                <th>name</th>
+                <th class="text-right">奉納件数</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="clickable-row">
+                <td>31303</td>
+                <td>0030</td>
+                <td>大江戸準総壇</td>
+                <td class="text-right">128</td>
+              </tr>
+              <tr class="clickable-row">
+                <td>32204</td>
+                <td>0044</td>
+                <td>富士山</td>
+                <td class="text-right">94</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <details class="card masters-sync" open>
+        <summary>マスタ連携 (普段は閉じておく)</summary>
+
+        <div class="masters-sync-actions">
+          <button class="primary-button" type="button">マスタ同期</button>
+          <p class="section-lead">osystem-masters から伝道会一覧を取得して反映する。</p>
+        </div>
+
+        <form class="masters-sync-form">
+          <p class="section-lead">注文書で選択させたい伝道会にチェックを入れて「対象を保存」を押す。</p>
+          <div class="fellowship-enabled-list">
+            <label class="fellowship-enabled-item">
+              <input type="checkbox" checked>
+              <span class="code-mono">31303</span>
+              <span>大江戸準総壇</span>
+            </label>
+            <label class="fellowship-enabled-item">
+              <input type="checkbox" checked>
+              <span class="code-mono">32204</span>
+              <span>富士山</span>
+            </label>
+            <label class="fellowship-enabled-item">
+              <input type="checkbox">
+              <span class="code-mono">30001</span>
+              <span>未使用伝道会</span>
+            </label>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="primary-button">対象を保存</button>
+          </div>
+        </form>
+      </details>
+
+      <div class="card narrow-card">
+        <h2>ログイン</h2>
+        <form class="stack-form">
+          <div class="field">
+            <label class="field-label" for="email">メールアドレス</label>
+            <input id="email" type="email">
+          </div>
+          <div class="field">
+            <label class="field-label" for="password">パスワード</label>
+            <input id="password" type="password">
+          </div>
+          <div class="checkbox-field">
+            <label><input type="checkbox"> ログイン状態を保持する</label>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="primary-button">サインイン</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>派生表示</h2>
+        <p class="derived-value">合計: 12,800 円</p>
+        <p class="error-box">エラーが発生しました。入力を確認してください。</p>
+      </div>
+    </div>
+  </body>
+</html>
