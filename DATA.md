@@ -132,7 +132,7 @@
 - 一般ユーザーの追加は自身の伝道会に固定。
 - 管理者は全伝道会の追加・更新・無効化が可能。
 - 削除は物理削除ではなく `active = 0`。
-- 伝道会は将来的に `osystem-masters.fellowships` から同期する。
+- 伝道会は将来的に `osystem-masters.fellowships` を共有 D1 で直接参照する予定 ([`D1_CONSOLIDATION.md`](./D1_CONSOLIDATION.md))。
 
 **要確認**:
 - 現在の台帳にある `茨城` は `osystem-masters.fellowships` に未登録。正式コードを確認して共通マスタへ追加するか、既存伝道会への修正が必要。
@@ -140,6 +140,8 @@
 ---
 
 ## 7. アーキテクチャ
+
+> CF Workers 系は D1 を共有して同期をやめる方向で計画中 → [`D1_CONSOLIDATION.md`](./D1_CONSOLIDATION.md)。下記は現行の構成。
 
 - `osystem-masters` は読み取り API (`GET /api/fellowships` 他) と管理 UI を持つ。
 - 消費アプリは pull 型で同期する。管理画面に「マスタ同期」ボタンを置き、`INSERT OR REPLACE` で自分の DB に取り込む。
