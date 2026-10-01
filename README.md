@@ -20,7 +20,7 @@
 
 各システムが保持しているマスタデータの所在と源流は [`DATA.md`](./DATA.md) を参照。新システムを作る前に必ず読む。
 
-CF Workers 系の D1 を 1 つに統合する計画は [`D1_CONSOLIDATION.md`](./D1_CONSOLIDATION.md) (未着手)。
+CF Workers 系の D1 を 1 つに統合する計画は [`D1_CONSOLIDATION.md`](./D1_CONSOLIDATION.md) (未着手。Cloudflare アカウント移管と同時に実施)。
 
 ## 共通リソース
 
